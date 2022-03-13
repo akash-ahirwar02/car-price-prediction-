@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Used car price Prediction</title>
+
+</head>
+<style type="text/css">
+	.container {
+		box-sizing: 200px;
+	}
+</style>
+
+<br><br><br>
+
+<body style="background-image: url(/static/image/car_im.jpg);background-size: cover;background-repeat: no-repeat;">
+
+
+	<form action="{{ url_for('predict')}} " method="post" ;
+		style="background-color:rgba(232, 238, 240, 0.671); width: 600px; padding: 5px;position: absolute;  top:6%; left:30%; box-shadow: 5px 5px 5px rgba(150, 148, 148, 0.61); ">
+		<div class="card mt-50" style="width: 100%; height: 100%">
+			<div class="card-header" style="text-align: center">
+				<h1>Welcome to Car Price Predictor</h1>
+			</div>
+			<div class="card-body">
+				<div style="text-align: center; padding: 10px;">
+
+
+
+					<br>
+					<font size="+1">Company Name</font><br>
+					<select id="company"  name= "company" style="width:300px; height: 25px;  class=" form-select form-select-lg " aria-label="
+						.form-select-lg example"  required="required">
+						<option value="Chevrolet"> Chevrolet </option>
+						<option value="Ford"> Ford </option>
+						<option value="Honda"> Honda </option>
+						<option value="Hyundai"> Hyundai </option>
+						<option value="Mahindra"> Mahindra </option>
+						<option value="Maruti"> Maruti </option>
+						<option value="Renaul"> Renault </option>
+						<option value="Tata <"> Tata </option>
+						<option value="Toyota"> Toyota </option>
+						<option value="Volkswagen"> Volkswagen </option>
+					</select>
+
+					<br></br>
+
+					<font size="+1">Model</font><br>
+					<select id="Model"  name="Model" style="width:300px; height: 25px; class=" form-select form-select-lg " aria-label="
+						.form-select-lg example"  required="required">
+						<option value = 'Chevrolet Aveo 1.4'> Chevrolet Aveo 1.4 </option>
+                            <option value = 'Chevrolet Aveo U-VA'> Chevrolet Aveo U-VA </option>
+                            <option value = 'Chevrolet Beat Diesel'> Chevrolet Beat Diesel </option>
+                            <option value = 'Chevrolet Beat LS'> Chevrolet Beat LS </option>
+                            <option value = 'Chevrolet Beat LT'> Chevrolet Beat LT </option>
+                            <option value = 'Chevrolet Captiva 2.2'> Chevrolet Captiva 2.2 </option>
+                            <option value = 'Chevrolet Captiva LT'> Chevrolet Captiva LT </option>
+                            <option value = 'Chevrolet Cruze LT'> Chevrolet Cruze LT </option>
+                            <option value = 'Chevrolet Cruze LTZ'> Chevrolet Cruze LTZ </option>
+                            <option value = 'Chevrolet Enjoy 1.3'> Chevrolet Enjoy 1.3 </option>
+                            <option value = 'Chevrolet Enjoy 1.4'> Chevrolet Enjoy 1.4 </option>
+                            <option value = 'Chevrolet Enjoy Petrol'> Chevrolet Enjoy Petrol </option>
+                            <option value = 'Chevrolet Enjoy TCDi'> Chevrolet Enjoy TCDi </option>
+                            <option value = 'Chevrolet Optra 1.6'> Chevrolet Optra 1.6 </option>
+                            <option value = 'Chevrolet Optra Magnum'> Chevrolet Optra Magnum </option>
+                            <option value = 'Chevrolet Sail 1.2'> Chevrolet Sail 1.2 </option>
+                            <option value = 'Chevrolet Sail 1.3'> Chevrolet Sail 1.3 </option>
+                            <option value = 'Chevrolet Sail Hatchback'> Chevrolet Sail Hatchback </option>
+                            <option value = 'Chevrolet Sail LT'> Chevrolet Sail LT </option>
+                            <option value = 'Chevrolet Spark 1.0'> Chevrolet Spark 1.0 </option>
+                            <option value = 'Chevrolet Tavera B2'> Chevrolet Tavera B2 </option>
+                            <option value = 'Chevrolet Tavera Neo'> Chevrolet Tavera Neo </option>
+                            <option value = 'Chevrolet Trailblazer LTZ'> Chevrolet Trailblazer LTZ </option>
+                            <option value = 'Ford Aspire Titanium'> Ford Aspire Titanium </option>
+                            <option value = 'Ford Aspire Trend'> Ford Aspire Trend </option>
+                            <option value = 'Ford Classic 1.4'> Ford Classic 1.4 </option>
+                            <option value = 'Ford Classic 1.6'> Ford Classic 1.6 </option>
+                            <option value = 'Ford EcoSport 1.5'> Ford EcoSport 1.5 </option>
+                            <option value = 'Ford EcoSport S'> Ford EcoSport S </option>
+                            <option value = 'Ford Ecosport 1.0'> Ford Ecosport 1.0 </option>
+                            <option value = 'Ford Ecosport 1.5'> Ford Ecosport 1.5 </option>
+                            <option value = 'Ford Ecosport Sports'> Ford Ecosport Sports </option>
+                            <option value = 'Ford Endeavour 2.2'> Ford Endeavour 2.2 </option>
+                            <option value = 'Ford Endeavour 2.5L'> Ford Endeavour 2.5L </option>
+                            <option value = 'Ford Endeavour 3.0L'> Ford Endeavour 3.0L </option>
+                            <option value = 'Ford Endeavour 3.2'> Ford Endeavour 3.2 </option>
+                            <option value = 'Ford Endeavour 4x2'> Ford Endeavour 4x2 </option>
+                            <option value = 'Ford Endeavour Hurricane'> Ford Endeavour Hurricane </option>
+                            <option value = 'Ford Fiesta 1.4'> Ford Fiesta 1.4 </option>
+                            <option value = 'Ford Fiesta 1.5'> Ford Fiesta 1.5 </option>
+                            <option value = 'Ford Fiesta 1.6'> Ford Fiesta 1.6 </option>
+                            <option value = 'Ford Fiesta Classic'> Ford Fiesta Classic </option>
+                            <option value = 'Ford Fiesta Diesel'> Ford Fiesta Diesel </option>
+                            <option value = 'Ford Fiesta EXi'> Ford Fiesta EXi </option>
+                            <option value = 'Ford Fiesta Titanium'> Ford Fiesta Titanium </option>
+                            <option value = 'Ford Figo 1.2P'> Ford Figo 1.2P </option>
+                            <option value = 'Ford Figo 1.5'> Ford Figo 1.5 </option>
+                            <option value = 'Ford Figo 1.5D'> Ford Figo 1.5D </option>
+                            <option value = 'Ford Figo 1.5P'> Ford Figo 1.5P </option>
+                            <option value = 'Ford Figo Aspire'> Ford Figo Aspire </option>
+                            <option value = 'Ford Figo Diesel'> Ford Figo Diesel </option>
+                            <option value = 'Ford Figo Petrol'> Ford Figo Petrol </option>
+                            <option value = 'Ford Figo Titanium'> Ford Figo Titanium </option>
+                            <option value = 'Ford Freestyle Titanium'> Ford Freestyle Titanium </option>
+                            <option value = 'Ford Freestyle Trend'> Ford Freestyle Trend </option>
+                            <option value = 'Ford Fusion 1.4'> Ford Fusion 1.4 </option>
+                            <option value = 'Ford Fusion Plus'> Ford Fusion Plus </option>
+                            <option value = 'Ford Ikon 1.4'> Ford Ikon 1.4 </option>
+                            <option value = 'Ford Ikon 1.6'> Ford Ikon 1.6 </option>
+                            <option value = 'Honda Accord 2.4'> Honda Accord 2.4 </option>
+                            <option value = 'Honda Accord VTi-L'> Honda Accord VTi-L </option>
+                            <option value = 'Honda Amaze Anniversary'> Honda Amaze Anniversary </option>
+                            <option value = 'Honda Amaze E'> Honda Amaze E </option>
+                            <option value = 'Honda Amaze EX'> Honda Amaze EX </option>
+                            <option value = 'Honda Amaze S'> Honda Amaze S </option>
+                            <option value = 'Honda Amaze SX'> Honda Amaze SX </option>
+                            <option value = 'Honda Amaze V'> Honda Amaze V </option>
+                            <option value = 'Honda Amaze VX'> Honda Amaze VX </option>
+                            <option value = 'Honda Amaze i-VTEC'> Honda Amaze i-VTEC </option>
+                            <option value = 'Honda BR-V i-DTEC'> Honda BR-V i-DTEC </option>
+                            <option value = 'Honda BR-V i-VTEC'> Honda BR-V i-VTEC </option>
+                            <option value = 'Honda BRV i-DTEC'> Honda BRV i-DTEC </option>
+                            <option value = 'Honda BRV i-VTEC'> Honda BRV i-VTEC </option>
+                            <option value = 'Honda Brio 1.2'> Honda Brio 1.2 </option>
+                            <option value = 'Honda Brio E'> Honda Brio E </option>
+                            <option value = 'Honda Brio Exclusive'> Honda Brio Exclusive </option>
+                            <option value = 'Honda Brio S'> Honda Brio S </option>
+                            <option value = 'Honda Brio V'> Honda Brio V </option>
+                            <option value = 'Honda CR-V 2.0L'> Honda CR-V 2.0L </option>
+                            <option value = 'Honda CR-V 2.4'> Honda CR-V 2.4 </option>
+                            <option value = 'Honda CR-V 2.4L'> Honda CR-V 2.4L </option>
+                            <option value = 'Honda City 1.5'> Honda City 1.5 </option>
+                            <option value = 'Honda City 2017-2020'> Honda City 2017-2020 </option>
+                            <option value = 'Honda City Corporate'> Honda City Corporate </option>
+                            <option value = 'Honda City E'> Honda City E </option>
+                            <option value = 'Honda City S'> Honda City S </option>
+                            <option value = 'Honda City V'> Honda City V </option>
+                            <option value = 'Honda City VX'> Honda City VX </option>
+                            <option value = 'Honda City i'> Honda City i </option>
+                            <option value = 'Honda City i-DTEC'> Honda City i-DTEC </option>
+                            <option value = 'Honda City i-VTEC'> Honda City i-VTEC </option>
+                            <option value = 'Honda Civic 1.8'> Honda Civic 1.8 </option>
+                            <option value = 'Honda Civic Hybrid'> Honda Civic Hybrid </option>
+                            <option value = 'Honda Civic ZX'> Honda Civic ZX </option>
+                            <option value = 'Honda Jazz 1.2'> Honda Jazz 1.2 </option>
+                            <option value = 'Honda Jazz 1.5'> Honda Jazz 1.5 </option>
+                            <option value = 'Honda Jazz Basic'> Honda Jazz Basic </option>
+                            <option value = 'Honda Jazz Select'> Honda Jazz Select </option>
+                            <option value = 'Honda Jazz V'> Honda Jazz V </option>
+                            <option value = 'Honda Jazz VX'> Honda Jazz VX </option>
+                            <option value = 'Honda Mobilio RS'> Honda Mobilio RS </option>
+                            <option value = 'Honda Mobilio S'> Honda Mobilio S </option>
+                            <option value = 'Honda Mobilio V'> Honda Mobilio V </option>
+                            <option value = 'Honda WR-V i-DTEC'> Honda WR-V i-DTEC </option>
+                            <option value = 'Honda WR-V i-VTEC'> Honda WR-V i-VTEC </option>
+                            <option value = 'Hyundai Accent CRDi'> Hyundai Accent CRDi </option>
+                            <option value = 'Hyundai Accent Executive'> Hyundai Accent Executive </option>
+                            <option value = 'Hyundai Accent GLE'> Hyundai Accent GLE </option>
+                            <option value = 'Hyundai Accent GLS'> Hyundai Accent GLS </option>
+                            <option value = 'Hyundai Creta 1.4'> Hyundai Creta 1.4 </option>
+                            <option value = 'Hyundai Creta 1.6'> Hyundai Creta 1.6 </option>
+                            <option value = 'Hyundai EON 1.0'> Hyundai EON 1.0 </option>
+                            <option value = 'Hyundai EON D'> Hyundai EON D </option>
+                            <option value = 'Hyundai EON Era'> Hyundai EON Era </option>
+                            <option value = 'Hyundai EON Magna'> Hyundai EON Magna </option>
+                            <option value = 'Hyundai EON Sportz'> Hyundai EON Sportz </option>
+                            <option value = 'Hyundai Elantra CRDi'> Hyundai Elantra CRDi </option>
+                            <option value = 'Hyundai Elantra GLS'> Hyundai Elantra GLS </option>
+                            <option value = 'Hyundai Elantra GT'> Hyundai Elantra GT </option>
+                            <option value = 'Hyundai Elantra S'> Hyundai Elantra S </option>
+                            <option value = 'Hyundai Elantra SX'> Hyundai Elantra SX </option>
+                            <option value = 'Hyundai Elite i20'> Hyundai Elite i20 </option>
+                            <option value = 'Hyundai Getz 1.1'> Hyundai Getz 1.1 </option>
+                            <option value = 'Hyundai Getz 1.3'> Hyundai Getz 1.3 </option>
+                            <option value = 'Hyundai Getz 1.5'> Hyundai Getz 1.5 </option>
+                            <option value = 'Hyundai Getz GLE'> Hyundai Getz GLE </option>
+                            <option value = 'Hyundai Getz GLX'> Hyundai Getz GLX </option>
+                            <option value = 'Hyundai Grand i10'> Hyundai Grand i10 </option>
+                            <option value = 'Hyundai Santa Fe'> Hyundai Santa Fe </option>
+                            <option value = 'Hyundai Santro Asta'> Hyundai Santro Asta </option>
+                            <option value = 'Hyundai Santro Era'> Hyundai Santro Era </option>
+                            <option value = 'Hyundai Santro Magna'> Hyundai Santro Magna </option>
+                            <option value = 'Hyundai Santro Sportz'> Hyundai Santro Sportz </option>
+                            <option value = 'Hyundai Santro Xing'> Hyundai Santro Xing </option>
+                            <option value = 'Hyundai Sonata 2.0L'> Hyundai Sonata 2.0L </option>
+                            <option value = 'Hyundai Sonata 2.4'> Hyundai Sonata 2.4 </option>
+                            <option value = 'Hyundai Sonata 2.4L'> Hyundai Sonata 2.4L </option>
+                            <option value = 'Hyundai Sonata CRDi'> Hyundai Sonata CRDi </option>
+                            <option value = 'Hyundai Tucson 2.0'> Hyundai Tucson 2.0 </option>
+                            <option value = 'Hyundai Tucson CRDi'> Hyundai Tucson CRDi </option>
+                            <option value = 'Hyundai Venue SX'> Hyundai Venue SX </option>
+                            <option value = 'Hyundai Verna 1.4'> Hyundai Verna 1.4 </option>
+                            <option value = 'Hyundai Verna 1.6'> Hyundai Verna 1.6 </option>
+                            <option value = 'Hyundai Verna CRDi'> Hyundai Verna CRDi </option>
+                            <option value = 'Hyundai Verna S'> Hyundai Verna S </option>
+                            <option value = 'Hyundai Verna SX'> Hyundai Verna SX </option>
+                            <option value = 'Hyundai Verna Transform'> Hyundai Verna Transform </option>
+                            <option value = 'Hyundai Verna VTVT'> Hyundai Verna VTVT </option>
+                            <option value = 'Hyundai Verna XXi'> Hyundai Verna XXi </option>
+                            <option value = 'Hyundai Verna Xi'> Hyundai Verna Xi </option>
+                            <option value = 'Hyundai Xcent 1.1'> Hyundai Xcent 1.1 </option>
+                            <option value = 'Hyundai Xcent 1.2'> Hyundai Xcent 1.2 </option>
+                            <option value = 'Hyundai i10 Asta'> Hyundai i10 Asta </option>
+                            <option value = 'Hyundai i10 Era'> Hyundai i10 Era </option>
+                            <option value = 'Hyundai i10 Magna'> Hyundai i10 Magna </option>
+                            <option value = 'Hyundai i10 Sportz'> Hyundai i10 Sportz </option>
+                            <option value = 'Hyundai i20 1.2'> Hyundai i20 1.2 </option>
+                            <option value = 'Hyundai i20 1.4'> Hyundai i20 1.4 </option>
+                            <option value = 'Hyundai i20 2015-2017'> Hyundai i20 2015-2017 </option>
+                            <option value = 'Hyundai i20 Active'> Hyundai i20 Active </option>
+                            <option value = 'Hyundai i20 Asta'> Hyundai i20 Asta </option>
+                            <option value = 'Hyundai i20 Diesel'> Hyundai i20 Diesel </option>
+                            <option value = 'Hyundai i20 Era'> Hyundai i20 Era </option>
+                            <option value = 'Hyundai i20 Magna'> Hyundai i20 Magna </option>
+                            <option value = 'Hyundai i20 Petrol'> Hyundai i20 Petrol </option>
+                            <option value = 'Hyundai i20 Sportz'> Hyundai i20 Sportz </option>
+                            <option value = 'Mahindra Bolero 2011-2019'> Mahindra Bolero 2011-2019 </option>
+                            <option value = 'Mahindra Bolero B2'> Mahindra Bolero B2 </option>
+                            <option value = 'Mahindra Bolero B4'> Mahindra Bolero B4 </option>
+                            <option value = 'Mahindra Bolero DI'> Mahindra Bolero DI </option>
+                            <option value = 'Mahindra Bolero LX'> Mahindra Bolero LX </option>
+                            <option value = 'Mahindra Bolero PLUS'> Mahindra Bolero PLUS </option>
+                            <option value = 'Mahindra Bolero Power'> Mahindra Bolero Power </option>
+                            <option value = 'Mahindra Bolero SLE'> Mahindra Bolero SLE </option>
+                            <option value = 'Mahindra Bolero SLX'> Mahindra Bolero SLX </option>
+                            <option value = 'Mahindra Bolero VLX'> Mahindra Bolero VLX </option>
+                            <option value = 'Mahindra Bolero XL'> Mahindra Bolero XL </option>
+                            <option value = 'Mahindra KUV 100'> Mahindra KUV 100 </option>
+                            <option value = 'Mahindra Logan Diesel'> Mahindra Logan Diesel </option>
+                            <option value = 'Mahindra Logan Petrol'> Mahindra Logan Petrol </option>
+                            <option value = 'Mahindra Marazzo M2'> Mahindra Marazzo M2 </option>
+                            <option value = 'Mahindra Marazzo M6'> Mahindra Marazzo M6 </option>
+                            <option value = 'Mahindra Marazzo M8'> Mahindra Marazzo M8 </option>
+                            <option value = 'Mahindra NuvoSport N8'> Mahindra NuvoSport N8 </option>
+                            <option value = 'Mahindra Quanto C2'> Mahindra Quanto C2 </option>
+                            <option value = 'Mahindra Quanto C4'> Mahindra Quanto C4 </option>
+                            <option value = 'Mahindra Quanto C6'> Mahindra Quanto C6 </option>
+                            <option value = 'Mahindra Quanto C8'> Mahindra Quanto C8 </option>
+                            <option value = 'Mahindra Renault Logan'> Mahindra Renault Logan </option>
+                            <option value = 'Mahindra Scorpio 1.99'> Mahindra Scorpio 1.99 </option>
+                            <option value = 'Mahindra Scorpio 2.6'> Mahindra Scorpio 2.6 </option>
+                            <option value = 'Mahindra Scorpio 2006-2009'> Mahindra Scorpio 2006-2009 </option>
+                            <option value = 'Mahindra Scorpio 2009-2014'> Mahindra Scorpio 2009-2014 </option>
+                            <option value = 'Mahindra Scorpio EX'> Mahindra Scorpio EX </option>
+                            <option value = 'Mahindra Scorpio Gateway'> Mahindra Scorpio Gateway </option>
+                            <option value = 'Mahindra Scorpio Getaway'> Mahindra Scorpio Getaway </option>
+                            <option value = 'Mahindra Scorpio Intelli'> Mahindra Scorpio Intelli </option>
+                            <option value = 'Mahindra Scorpio LX'> Mahindra Scorpio LX </option>
+                            <option value = 'Mahindra Scorpio M2DI'> Mahindra Scorpio M2DI </option>
+                            <option value = 'Mahindra Scorpio S10'> Mahindra Scorpio S10 </option>
+                            <option value = 'Mahindra Scorpio S11'> Mahindra Scorpio S11 </option>
+                            <option value = 'Mahindra Scorpio S2'> Mahindra Scorpio S2 </option>
+                            <option value = 'Mahindra Scorpio S3'> Mahindra Scorpio S3 </option>
+                            <option value = 'Mahindra Scorpio S4'> Mahindra Scorpio S4 </option>
+                            <option value = 'Mahindra Scorpio S5'> Mahindra Scorpio S5 </option>
+                            <option value = 'Mahindra Scorpio S7'> Mahindra Scorpio S7 </option>
+                            <option value = 'Mahindra Scorpio SLE'> Mahindra Scorpio SLE </option>
+                            <option value = 'Mahindra Scorpio SLX'> Mahindra Scorpio SLX </option>
+                            <option value = 'Mahindra Scorpio VLS'> Mahindra Scorpio VLS </option>
+                            <option value = 'Mahindra Scorpio VLX'> Mahindra Scorpio VLX </option>
+                            <option value = 'Mahindra Ssangyong Rexton'> Mahindra Ssangyong Rexton </option>
+                            <option value = 'Mahindra Supro LX'> Mahindra Supro LX </option>
+                            <option value = 'Mahindra TUV 300'> Mahindra TUV 300 </option>
+                            <option value = 'Mahindra Thar 4X4'> Mahindra Thar 4X4 </option>
+                            <option value = 'Mahindra Thar CRDe'> Mahindra Thar CRDe </option>
+                            <option value = 'Mahindra Thar DI'> Mahindra Thar DI </option>
+                            <option value = 'Mahindra Verito 1.4'> Mahindra Verito 1.4 </option>
+                            <option value = 'Mahindra Verito 1.5'> Mahindra Verito 1.5 </option>
+                            <option value = 'Mahindra Verito 1.6'> Mahindra Verito 1.6 </option>
+                            <option value = 'Mahindra Verito Vibe'> Mahindra Verito Vibe </option>
+                            <option value = 'Mahindra XUV300 W6'> Mahindra XUV300 W6 </option>
+                            <option value = 'Mahindra XUV300 W8'> Mahindra XUV300 W8 </option>
+                            <option value = 'Mahindra XUV500 AT'> Mahindra XUV500 AT </option>
+                            <option value = 'Mahindra XUV500 W10'> Mahindra XUV500 W10 </option>
+                            <option value = 'Mahindra XUV500 W11'> Mahindra XUV500 W11 </option>
+                            <option value = 'Mahindra XUV500 W4'> Mahindra XUV500 W4 </option>
+                            <option value = 'Mahindra XUV500 W5'> Mahindra XUV500 W5 </option>
+                            <option value = 'Mahindra XUV500 W6'> Mahindra XUV500 W6 </option>
+                            <option value = 'Mahindra XUV500 W7'> Mahindra XUV500 W7 </option>
+                            <option value = 'Mahindra XUV500 W8'> Mahindra XUV500 W8 </option>
+                            <option value = 'Mahindra XUV500 W9'> Mahindra XUV500 W9 </option>
+                            <option value = 'Mahindra Xylo D2'> Mahindra Xylo D2 </option>
+                            <option value = 'Mahindra Xylo D4'> Mahindra Xylo D4 </option>
+                            <option value = 'Mahindra Xylo E4'> Mahindra Xylo E4 </option>
+                            <option value = 'Mahindra Xylo E6'> Mahindra Xylo E6 </option>
+                            <option value = 'Mahindra Xylo E8'> Mahindra Xylo E8 </option>
+                            <option value = 'Mahindra Xylo H4'> Mahindra Xylo H4 </option>
+                            <option value = 'Mahindra Xylo H9'> Mahindra Xylo H9 </option>
+                            <option value = 'Maruti 800 AC'> Maruti 800 AC </option>
+                            <option value = 'Maruti 800 EX'> Maruti 800 EX </option>
+                            <option value = 'Maruti 800 Std'> Maruti 800 Std </option>
+                            <option value = 'Maruti 800 Uniq'> Maruti 800 Uniq </option>
+                            <option value = 'Maruti A-Star Lxi'> Maruti A-Star Lxi </option>
+                            <option value = 'Maruti A-Star Vxi'> Maruti A-Star Vxi </option>
+                            <option value = 'Maruti A-Star Zxi'> Maruti A-Star Zxi </option>
+                            <option value = 'Maruti Alto 800'> Maruti Alto 800 </option>
+                            <option value = 'Maruti Alto K10'> Maruti Alto K10 </option>
+                            <option value = 'Maruti Alto LX'> Maruti Alto LX </option>
+                            <option value = 'Maruti Alto LXi'> Maruti Alto LXi </option>
+                            <option value = 'Maruti Alto STD'> Maruti Alto STD </option>
+                            <option value = 'Maruti Alto Std'> Maruti Alto Std </option>
+                            <option value = 'Maruti Baleno Alpha'> Maruti Baleno Alpha </option>
+                            <option value = 'Maruti Baleno Delta'> Maruti Baleno Delta </option>
+                            <option value = 'Maruti Baleno RS'> Maruti Baleno RS </option>
+                            <option value = 'Maruti Baleno Sigma'> Maruti Baleno Sigma </option>
+                            <option value = 'Maruti Baleno Zeta'> Maruti Baleno Zeta </option>
+                            <option value = 'Maruti Celerio LDi'> Maruti Celerio LDi </option>
+                            <option value = 'Maruti Celerio LXI'> Maruti Celerio LXI </option>
+                            <option value = 'Maruti Celerio VDi'> Maruti Celerio VDi </option>
+                            <option value = 'Maruti Celerio VXI'> Maruti Celerio VXI </option>
+                            <option value = 'Maruti Celerio VXi'> Maruti Celerio VXi </option>
+                            <option value = 'Maruti Celerio X'> Maruti Celerio X </option>
+                            <option value = 'Maruti Celerio ZDi'> Maruti Celerio ZDi </option>
+                            <option value = 'Maruti Celerio ZXI'> Maruti Celerio ZXI </option>
+                            <option value = 'Maruti Ciaz 1.3'> Maruti Ciaz 1.3 </option>
+                            <option value = 'Maruti Ciaz 1.4'> Maruti Ciaz 1.4 </option>
+                            <option value = 'Maruti Ciaz AT'> Maruti Ciaz AT </option>
+                            <option value = 'Maruti Ciaz Alpha'> Maruti Ciaz Alpha </option>
+                            <option value = 'Maruti Ciaz Delta'> Maruti Ciaz Delta </option>
+                            <option value = 'Maruti Ciaz RS'> Maruti Ciaz RS </option>
+                            <option value = 'Maruti Ciaz S'> Maruti Ciaz S </option>
+                            <option value = 'Maruti Ciaz VDI'> Maruti Ciaz VDI </option>
+                            <option value = 'Maruti Ciaz VDi'> Maruti Ciaz VDi </option>
+                            <option value = 'Maruti Ciaz VXi'> Maruti Ciaz VXi </option>
+                            <option value = 'Maruti Ciaz ZDi'> Maruti Ciaz ZDi </option>
+                            <option value = 'Maruti Ciaz ZXi'> Maruti Ciaz ZXi </option>
+                            <option value = 'Maruti Ciaz Zeta'> Maruti Ciaz Zeta </option>
+                            <option value = 'Maruti Dzire LXI'> Maruti Dzire LXI </option>
+                            <option value = 'Maruti Dzire VXI'> Maruti Dzire VXI </option>
+                            <option value = 'Maruti Dzire ZXI'> Maruti Dzire ZXI </option>
+                            <option value = 'Maruti Eeco 5'> Maruti Eeco 5 </option>
+                            <option value = 'Maruti Eeco 7'> Maruti Eeco 7 </option>
+                            <option value = 'Maruti Eeco Smiles'> Maruti Eeco Smiles </option>
+                            <option value = 'Maruti Ertiga 1.5'> Maruti Ertiga 1.5 </option>
+                            <option value = 'Maruti Ertiga BSIV'> Maruti Ertiga BSIV </option>
+                            <option value = 'Maruti Ertiga LDI'> Maruti Ertiga LDI </option>
+                            <option value = 'Maruti Ertiga LXI'> Maruti Ertiga LXI </option>
+                            <option value = 'Maruti Ertiga SHVS'> Maruti Ertiga SHVS </option>
+                            <option value = 'Maruti Ertiga VDI'> Maruti Ertiga VDI </option>
+                            <option value = 'Maruti Ertiga VXI'> Maruti Ertiga VXI </option>
+                            <option value = 'Maruti Ertiga ZDI'> Maruti Ertiga ZDI </option>
+                            <option value = 'Maruti Ertiga ZXI'> Maruti Ertiga ZXI </option>
+                            <option value = 'Maruti Esteem LX'> Maruti Esteem LX </option>
+                            <option value = 'Maruti Esteem Lxi'> Maruti Esteem Lxi </option>
+                            <option value = 'Maruti Gypsy King'> Maruti Gypsy King </option>
+                            <option value = 'Maruti Ignis 1.2'> Maruti Ignis 1.2 </option>
+                            <option value = 'Maruti Ignis 1.3'> Maruti Ignis 1.3 </option>
+                            <option value = 'Maruti Ignis Zeta'> Maruti Ignis Zeta </option>
+                            <option value = 'Maruti Omni 5'> Maruti Omni 5 </option>
+                            <option value = 'Maruti Omni 8'> Maruti Omni 8 </option>
+                            <option value = 'Maruti Omni E'> Maruti Omni E </option>
+                            <option value = 'Maruti Omni Limited'> Maruti Omni Limited </option>
+                            <option value = 'Maruti Omni MPI'> Maruti Omni MPI </option>
+                            <option value = 'Maruti Ritz Genus'> Maruti Ritz Genus </option>
+                            <option value = 'Maruti Ritz LDi'> Maruti Ritz LDi </option>
+                            <option value = 'Maruti Ritz LXI'> Maruti Ritz LXI </option>
+                            <option value = 'Maruti Ritz LXi'> Maruti Ritz LXi </option>
+                            <option value = 'Maruti Ritz VDi'> Maruti Ritz VDi </option>
+                            <option value = 'Maruti Ritz VXI'> Maruti Ritz VXI </option>
+                            <option value = 'Maruti Ritz VXi'> Maruti Ritz VXi </option>
+                            <option value = 'Maruti Ritz ZDi'> Maruti Ritz ZDi </option>
+                            <option value = 'Maruti Ritz ZXi'> Maruti Ritz ZXi </option>
+                            <option value = 'Maruti S-Cross 2017-2020'> Maruti S-Cross 2017-2020 </option>
+                            <option value = 'Maruti S-Presso VXI'> Maruti S-Presso VXI </option>
+                            <option value = 'Maruti SX4 Celebration'> Maruti SX4 Celebration </option>
+                            <option value = 'Maruti SX4 S'> Maruti SX4 S </option>
+                            <option value = 'Maruti SX4 VDI'> Maruti SX4 VDI </option>
+                            <option value = 'Maruti SX4 Vxi'> Maruti SX4 Vxi </option>
+                            <option value = 'Maruti SX4 ZDI'> Maruti SX4 ZDI </option>
+                            <option value = 'Maruti SX4 ZXI'> Maruti SX4 ZXI </option>
+                            <option value = 'Maruti SX4 Zxi'> Maruti SX4 Zxi </option>
+                            <option value = 'Maruti Swift 1.2'> Maruti Swift 1.2 </option>
+                            <option value = 'Maruti Swift AMT'> Maruti Swift AMT </option>
+                            <option value = 'Maruti Swift DDiS'> Maruti Swift DDiS </option>
+                            <option value = 'Maruti Swift Dzire'> Maruti Swift Dzire </option>
+                            <option value = 'Maruti Swift Glam'> Maruti Swift Glam </option>
+                            <option value = 'Maruti Swift LDI'> Maruti Swift LDI </option>
+                            <option value = 'Maruti Swift LXI'> Maruti Swift LXI </option>
+                            <option value = 'Maruti Swift LXi'> Maruti Swift LXi </option>
+                            <option value = 'Maruti Swift Ldi'> Maruti Swift Ldi </option>
+                            <option value = 'Maruti Swift Lxi'> Maruti Swift Lxi </option>
+                            <option value = 'Maruti Swift Star'> Maruti Swift Star </option>
+                            <option value = 'Maruti Swift VDI'> Maruti Swift VDI </option>
+                            <option value = 'Maruti Swift VDi'> Maruti Swift VDi </option>
+                            <option value = 'Maruti Swift VVT'> Maruti Swift VVT </option>
+                            <option value = 'Maruti Swift VXI'> Maruti Swift VXI </option>
+                            <option value = 'Maruti Swift VXi'> Maruti Swift VXi </option>
+                            <option value = 'Maruti Swift Vdi'> Maruti Swift Vdi </option>
+                            <option value = 'Maruti Swift ZDI'> Maruti Swift ZDI </option>
+                            <option value = 'Maruti Swift ZDi'> Maruti Swift ZDi </option>
+                            <option value = 'Maruti Swift ZXI'> Maruti Swift ZXI </option>
+                            <option value = 'Maruti Vitara Brezza'> Maruti Vitara Brezza </option>
+                            <option value = 'Maruti Wagon R'> Maruti Wagon R </option>
+                            <option value = 'Maruti XL6 Alpha'> Maruti XL6 Alpha </option>
+                            <option value = 'Maruti Zen D'> Maruti Zen D </option>
+                            <option value = 'Maruti Zen Estilo'> Maruti Zen Estilo </option>
+                            <option value = 'Maruti Zen LX'> Maruti Zen LX </option>
+                            <option value = 'Maruti Zen LXI'> Maruti Zen LXI </option>
+                            <option value = 'Renault Captur 1.5'> Renault Captur 1.5 </option>
+                            <option value = 'Renault Duster 110PS'> Renault Duster 110PS </option>
+                            <option value = 'Renault Duster 4x4'> Renault Duster 4x4 </option>
+                            <option value = 'Renault Duster 85PS'> Renault Duster 85PS </option>
+                            <option value = 'Renault Duster Adventure'> Renault Duster Adventure </option>
+                            <option value = 'Renault Duster Petrol'> Renault Duster Petrol </option>
+                            <option value = 'Renault Duster RXL'> Renault Duster RXL </option>
+                            <option value = 'Renault Duster RXZ'> Renault Duster RXZ </option>
+                            <option value = 'Renault Fluence 1.5'> Renault Fluence 1.5 </option>
+                            <option value = 'Renault Fluence 2.0'> Renault Fluence 2.0 </option>
+                            <option value = 'Renault Fluence Diesel'> Renault Fluence Diesel </option>
+                            <option value = 'Renault KWID 1.0'> Renault KWID 1.0 </option>
+                            <option value = 'Renault KWID AMT'> Renault KWID AMT </option>
+                            <option value = 'Renault KWID Climber'> Renault KWID Climber </option>
+                            <option value = 'Renault KWID RXE'> Renault KWID RXE </option>
+                            <option value = 'Renault KWID RXL'> Renault KWID RXL </option>
+                            <option value = 'Renault KWID RXT'> Renault KWID RXT </option>
+                            <option value = 'Renault Koleos 2.0'> Renault Koleos 2.0 </option>
+                            <option value = 'Renault Lodgy 85PS'> Renault Lodgy 85PS </option>
+                            <option value = 'Renault Lodgy Stepway'> Renault Lodgy Stepway </option>
+                            <option value = 'Renault Lodgy World'> Renault Lodgy World </option>
+                            <option value = 'Renault Pulse RxL'> Renault Pulse RxL </option>
+                            <option value = 'Renault Pulse RxZ'> Renault Pulse RxZ </option>
+                            <option value = 'Renault Scala Diesel'> Renault Scala Diesel </option>
+                            <option value = 'Renault Triber RXT'> Renault Triber RXT </option>
+                            <option value = 'Renault Triber RXZ'> Renault Triber RXZ </option>
+                            <option value = 'Tata Aria Pleasure'> Tata Aria Pleasure </option>
+                            <option value = 'Tata Aria Prestige'> Tata Aria Prestige </option>
+                            <option value = 'Tata Aria Pride'> Tata Aria Pride </option>
+                            <option value = 'Tata Aria Pure'> Tata Aria Pure </option>
+                            <option value = 'Tata Bolt Quadrajet'> Tata Bolt Quadrajet </option>
+                            <option value = 'Tata Bolt Revotron'> Tata Bolt Revotron </option>
+                            <option value = 'Tata Harrier XZ'> Tata Harrier XZ </option>
+                            <option value = 'Tata Hexa XE'> Tata Hexa XE </option>
+                            <option value = 'Tata Hexa XM'> Tata Hexa XM </option>
+                            <option value = 'Tata Hexa XT'> Tata Hexa XT </option>
+                            <option value = 'Tata Hexa XTA'> Tata Hexa XTA </option>
+                            <option value = 'Tata Indica GLS'> Tata Indica GLS </option>
+                            <option value = 'Tata Indica V2'> Tata Indica V2 </option>
+                            <option value = 'Tata Indica Vista'> Tata Indica Vista </option>
+                            <option value = 'Tata Indigo CR4'> Tata Indigo CR4 </option>
+                            <option value = 'Tata Indigo CS'> Tata Indigo CS </option>
+                            <option value = 'Tata Indigo GLX'> Tata Indigo GLX </option>
+                            <option value = 'Tata Indigo Grand'> Tata Indigo Grand </option>
+                            <option value = 'Tata Indigo LS'> Tata Indigo LS </option>
+                            <option value = 'Tata Indigo LX'> Tata Indigo LX </option>
+                            <option value = 'Tata Indigo TDI'> Tata Indigo TDI </option>
+                            <option value = 'Tata Indigo V'> Tata Indigo V </option>
+                            <option value = 'Tata Indigo VS'> Tata Indigo VS </option>
+                            <option value = 'Tata Indigo eCS'> Tata Indigo eCS </option>
+                            <option value = 'Tata Manza Aqua'> Tata Manza Aqua </option>
+                            <option value = 'Tata Manza Aura'> Tata Manza Aura </option>
+                            <option value = 'Tata Manza Club'> Tata Manza Club </option>
+                            <option value = 'Tata Manza ELAN'> Tata Manza ELAN </option>
+                            <option value = 'Tata Nano CX'> Tata Nano CX </option>
+                            <option value = 'Tata Nano Cx'> Tata Nano Cx </option>
+                            <option value = 'Tata Nano LX'> Tata Nano LX </option>
+                            <option value = 'Tata Nano Lx'> Tata Nano Lx </option>
+                            <option value = 'Tata Nano STD'> Tata Nano STD </option>
+                            <option value = 'Tata Nano Twist'> Tata Nano Twist </option>
+                            <option value = 'Tata Nano XE'> Tata Nano XE </option>
+                            <option value = 'Tata Nano XTA'> Tata Nano XTA </option>
+                            <option value = 'Tata New Safari'> Tata New Safari </option>
+                            <option value = 'Tata Nexon 1.2'> Tata Nexon 1.2 </option>
+                            <option value = 'Tata Nexon 1.5'> Tata Nexon 1.5 </option>
+                            <option value = 'Tata Safari DICOR'> Tata Safari DICOR </option>
+                            <option value = 'Tata Safari Storme'> Tata Safari Storme </option>
+                            <option value = 'Tata Sumo CX'> Tata Sumo CX </option>
+                            <option value = 'Tata Sumo EX'> Tata Sumo EX </option>
+                            <option value = 'Tata Sumo GX'> Tata Sumo GX </option>
+                            <option value = 'Tata Sumo Gold'> Tata Sumo Gold </option>
+                            <option value = 'Tata Sumo MKII'> Tata Sumo MKII </option>
+                            <option value = 'Tata Tiago 1.05'> Tata Tiago 1.05 </option>
+                            <option value = 'Tata Tiago 1.2'> Tata Tiago 1.2 </option>
+                            <option value = 'Tata Tiago 2019-2020'> Tata Tiago 2019-2020 </option>
+                            <option value = 'Tata Tiago NRG'> Tata Tiago NRG </option>
+                            <option value = 'Tata Tiago Wizz'> Tata Tiago Wizz </option>
+                            <option value = 'Tata Tiago XT'> Tata Tiago XT </option>
+                            <option value = 'Tata Tigor 1.05'> Tata Tigor 1.05 </option>
+                            <option value = 'Tata Tigor 1.2'> Tata Tigor 1.2 </option>
+                            <option value = 'Tata Tigor 2017-2020'> Tata Tigor 2017-2020 </option>
+                            <option value = 'Tata Venture EX'> Tata Venture EX </option>
+                            <option value = 'Tata Venture LX'> Tata Venture LX </option>
+                            <option value = 'Tata Xenon XT'> Tata Xenon XT </option>
+                            <option value = 'Tata Zest Quadrajet'> Tata Zest Quadrajet </option>
+                            <option value = 'Tata Zest Revotron'> Tata Zest Revotron </option>
+                            <option value = 'Toyota Camry 2.5'> Toyota Camry 2.5 </option>
+                            <option value = 'Toyota Camry W4'> Toyota Camry W4 </option>
+                            <option value = 'Toyota Corolla AE'> Toyota Corolla AE </option>
+                            <option value = 'Toyota Corolla Altis'> Toyota Corolla Altis </option>
+                            <option value = 'Toyota Corolla H2'> Toyota Corolla H2 </option>
+                            <option value = 'Toyota Etios 1.4'> Toyota Etios 1.4 </option>
+                            <option value = 'Toyota Etios 1.5'> Toyota Etios 1.5 </option>
+                            <option value = 'Toyota Etios Cross'> Toyota Etios Cross </option>
+                            <option value = 'Toyota Etios Diesel'> Toyota Etios Diesel </option>
+                            <option value = 'Toyota Etios G'> Toyota Etios G </option>
+                            <option value = 'Toyota Etios GD'> Toyota Etios GD </option>
+                            <option value = 'Toyota Etios Liva'> Toyota Etios Liva </option>
+                            <option value = 'Toyota Etios VD'> Toyota Etios VD </option>
+                            <option value = 'Toyota Etios VX'> Toyota Etios VX </option>
+                            <option value = 'Toyota Etios VXD'> Toyota Etios VXD </option>
+                            <option value = 'Toyota Fortuner 2.5'> Toyota Fortuner 2.5 </option>
+                            <option value = 'Toyota Fortuner 2.8'> Toyota Fortuner 2.8 </option>
+                            <option value = 'Toyota Fortuner 3.0'> Toyota Fortuner 3.0 </option>
+                            <option value = 'Toyota Fortuner 4x2'> Toyota Fortuner 4x2 </option>
+                            <option value = 'Toyota Fortuner 4x4'> Toyota Fortuner 4x4 </option>
+                            <option value = 'Toyota Glanza G'> Toyota Glanza G </option>
+                            <option value = 'Toyota Glanza V'> Toyota Glanza V </option>
+                            <option value = 'Toyota Innova 2.5'> Toyota Innova 2.5 </option>
+                            <option value = 'Toyota Innova Crysta'> Toyota Innova Crysta </option>
+                            <option value = 'Toyota Land Cruiser'> Toyota Land Cruiser </option>
+                            <option value = 'Toyota Platinum Etios'> Toyota Platinum Etios </option>
+                            <option value = 'Toyota Yaris V'> Toyota Yaris V </option>
+                            <option value = 'Volkswagen Ameo 1.0'> Volkswagen Ameo 1.0 </option>
+                            <option value = 'Volkswagen Ameo 1.2'> Volkswagen Ameo 1.2 </option>
+                            <option value = 'Volkswagen Ameo 1.5'> Volkswagen Ameo 1.5 </option>
+                            <option value = 'Volkswagen CrossPolo 1.5'> Volkswagen CrossPolo 1.5 </option>
+                            <option value = 'Volkswagen GTI 1.8'> Volkswagen GTI 1.8 </option>
+                            <option value = 'Volkswagen Jetta 1.6'> Volkswagen Jetta 1.6 </option>
+                            <option value = 'Volkswagen Jetta 2.0'> Volkswagen Jetta 2.0 </option>
+                            <option value = 'Volkswagen Jetta 2.0L'> Volkswagen Jetta 2.0L </option>
+                            <option value = 'Volkswagen Passat 1.8'> Volkswagen Passat 1.8 </option>
+                            <option value = 'Volkswagen Passat 2.0'> Volkswagen Passat 2.0 </option>
+                            <option value = 'Volkswagen Passat Highline'> Volkswagen Passat Highline </option>
+                            <option value = 'Volkswagen Polo 1.0'> Volkswagen Polo 1.0 </option>
+                            <option value = 'Volkswagen Polo 1.2'> Volkswagen Polo 1.2 </option>
+                            <option value = 'Volkswagen Polo 1.5'> Volkswagen Polo 1.5 </option>
+                            <option value = 'Volkswagen Polo 2015-2019'> Volkswagen Polo 2015-2019 </option>
+                            <option value = 'Volkswagen Polo Diesel'> Volkswagen Polo Diesel </option>
+                            <option value = 'Volkswagen Polo GT'> Volkswagen Polo GT </option>
+                            <option value = 'Volkswagen Polo Petrol'> Volkswagen Polo Petrol </option>
+                            <option value = 'Volkswagen Polo Select'> Volkswagen Polo Select </option>
+                            <option value = 'Volkswagen Vento 1.5'> Volkswagen Vento 1.5 </option>
+                            <option value = 'Volkswagen Vento 1.6'> Volkswagen Vento 1.6 </option>
+                            <option value = 'Volkswagen Vento Diesel'> Volkswagen Vento Diesel </option>
+                            <option value = 'Volkswagen Vento IPL'> Volkswagen Vento IPL </option>
+                            <option value = 'Volkswagen Vento Konekt'> Volkswagen Vento Konekt </option>
+                            <option value = 'Volkswagen Vento Petrol'> Volkswagen Vento Petrol </option>
+					</select>
+
+
+
+
+					<br></br>
+					<font size="+1">Year</font><br>
+					<select id="year" name= "year" type= "number" style="width:300px; height: 25px; class=" form-select form-select-lg " aria-label="
+						.form-select-lg example"  required="required" >
+						<option value= 2020> 2020 </option>
+						<option value= 2019> 2019</option>
+						<option value= 2018> 2018 </option>
+						<option value= 2017> 2017 </option>
+						<option value= 2016> 2016 </option>
+						<option value= 2015> 2015 </option>
+						<option value= 2014> 2014 </option>
+						<option value= 2013> 2013</option>
+						<option value= 2012> 2012 </option>
+						<option value= 2011> 2011 </option>
+						<option value= 2010> 2010 </option>
+						<option value= 2009> 2009</option>
+						<option value= 2008> 2008 </option>
+						<option value= 2007> 2007 </option>
+						<option value= 2006> 2006 </option>
+						
+					</select>
+
+
+					<br></br>
+					<font size="+1">fuel</font><br>
+					<select id="fuel" name="fuel" type= "text" style="width:300px; height: 25px; class=" form-select form-select-lg " aria-label="
+						.form-select-lg example" required="required" >
+						<option value= "Petrol" > Petrol </option>
+						<option value= "Diesel"> Diesel </option>
+
+					</select>
+
+					<br></br>
+					<font size="+1">Km driven</font><br>
+					<input id="km driven" name="km driven" type= "text" style="width:290px; height: 20px; " ; placeholder="Km driven"
+						required="required" />
+
+
+
+					<br>
+					<button
+						style="width:300px; height: 35px; margin: 10px; background-color: rgba(62, 226, 248, 0.555); "
+						type="Predict"> Predict Price </button>
+				</div>
+
+
+
+
+
+				<div class="card-footer" style="text-align: center">
+					<h1>{{prediction}}</h1>
+				</div>
+
+
+	</form>
+
+
+
+
+
+
+</body>
+
+</html>
